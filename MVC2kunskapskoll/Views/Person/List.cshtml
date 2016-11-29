@@ -1,0 +1,24 @@
+﻿@model List<MVC2kunskapskoll.Models.PersonModel>
+
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "result"
+    };
+}
+<h3>List</h3>
+@foreach (var item in Model)
+{
+    <p>
+     
+        @item.Address
+        @item.PhoneNumber
+        @item.Date
+        @Ajax.ActionLink($"Delete{ item.Name}", "Delete", new { id = item.ID }, ajaxOptions)
+    </p>
+
+}
+
+
