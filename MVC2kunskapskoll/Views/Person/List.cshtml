@@ -12,11 +12,11 @@
 @foreach (var item in Model)
 {
     <p>
-     
+        @item.Name
         @item.Address
         @item.PhoneNumber
         @item.Date
-        @Ajax.ActionLink($"Delete{ item.Name}", "Delete", new { id = item.ID }, ajaxOptions)
+        @Ajax.ActionLink($"Delete { item.Name}", "Delete", new { id = item.ID }, ajaxOptions)
     </p>
 
 }
