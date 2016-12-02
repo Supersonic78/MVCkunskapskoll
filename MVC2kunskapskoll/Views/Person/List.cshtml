@@ -7,6 +7,12 @@
         InsertionMode = InsertionMode.Replace,
         UpdateTargetId = "result"
     };
+    var ajaxOptionsEdit = new AjaxOptions
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "result"
+    };
 }
 <h3>List</h3>
 @foreach (var item in Model)
@@ -17,6 +23,7 @@
         @item.PhoneNumber
         @item.Date
         @Ajax.ActionLink($"Delete { item.Name}", "Delete", new { id = item.ID }, ajaxOptions)
+        @Ajax.ActionLink($"Edit { item.Name}", "Edit", new { id = item.ID }, ajaxOptionsEdit)
     </p>
 
 }

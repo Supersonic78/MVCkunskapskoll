@@ -17,13 +17,13 @@ namespace MVC2kunskapskoll.Controllers
             return View(newAdressBok);
         }
         [HttpPost]
-        public ActionResult Create(PersonModel addressbok)
+        public ActionResult Create(PersonModel addressbook)
         {
-            addressbok.Date = DateTime.Now;
-            ListofPersons.Add(addressbok);
+            addressbook.Date = DateTime.Now;
+            ListofPersons.Add(addressbook);
             return PartialView("List", ListofPersons);
         }
-        public ActionResult ListaAlla()
+        public ActionResult ListAll()
         {
             return PartialView("List", ListofPersons);
         }
@@ -32,6 +32,20 @@ namespace MVC2kunskapskoll.Controllers
         {
             var delete = ListofPersons.First(x => x.ID == id);
             ListofPersons.Remove(delete);
+            return PartialView("List", ListofPersons);
+        }
+        public ActionResult Edit(PersonModel addressbook)
+        {
+            var edit = ListofPersons.Find(x => x.ID == addressbook.ID);
+            return PartialView("Edit", edit);
+        }
+        [HttpPost]
+        public ActionResult Edit(PersonModel addressbook, FormCollection formcollection)
+        {
+            var edit = ListofPersons.Find(x => x.ID == addressbook.ID);
+            edit.Name = addressbook.Name;
+            edit.Address = addressbook.Address;
+            edit.PhoneNumber = addressbook.PhoneNumber;
             return PartialView("List", ListofPersons);
         }
     }

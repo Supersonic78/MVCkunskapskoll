@@ -1,0 +1,23 @@
+﻿@model MVC2kunskapskoll.Models.PersonModel
+
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "edit"
+    };
+}
+<h2>Edit</h2>
+@using (Ajax.BeginForm("Edit", ajaxOptions))
+{
+
+    @Html.EditorFor(x => x.Name)
+    @Html.EditorFor(x => x.Address)
+    @Html.EditorFor(x => x.PhoneNumber)
+    <input type="submit" value="Edit" />
+}
+<div id="edit">
+    @{Html.RenderAction("ListAll");}
+</div>
+
